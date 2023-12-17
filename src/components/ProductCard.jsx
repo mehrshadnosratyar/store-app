@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
-import { shortenText } from "../helper/textshorter";
+import { shortenText } from "../helper/helper";
 
 function ProductCard({product}) {
     const {rating} = product
     return ( 
-        <div className="flex flex-col gap-2 rounded-xl bg-stone-50 w-60 border-2 p-5">
+        <div className="flex flex-col gap-1 rounded-xl bg-neutral-100 w-60 border-2 p-5">
         <Link to={`/products/${product.id}`}>
         <img className="w-56 h-48" src={product.image} alt={product.title} />
-        <h4 className="text-xl text-sky-800 font-bold h-24 line-clamp-1">{shortenText(product.title)}</h4>
+        <h4 className="text-lg text-sky-800 font-bold h-16 line-clamp-1">{shortenText(product.title)}</h4>
         </Link>
         <div className="flex justify-between items-center">
             <span className=" font-semibold text-zinc-700">${product.price}</span>
