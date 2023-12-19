@@ -4,13 +4,15 @@ import App from './App.jsx'
 import './index.css'
 import { BrowserRouter } from 'react-router-dom'
 import ContextProvider from './context/Context.jsx'
+import CartContext from './context/cartContext.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  
     <BrowserRouter>
+    <CartContext>
     <ContextProvider>
     <App />
     </ContextProvider>
+    </CartContext>
     </BrowserRouter>
-  </React.StrictMode>,
 )
