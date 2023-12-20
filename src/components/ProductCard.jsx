@@ -7,14 +7,13 @@ function ProductCard({product}) {
     const {rating} = product
     const [state,dispatch] = useCart()
     const cardQuantity = quantityHandler(state,product.id)
-    console.log(cardQuantity);
     function clickHandler(type){
         dispatch({ type, payload: product})
     }
     return ( 
         <div className="flex flex-col gap-1 rounded-xl bg-white w-60 border border-double border-sky-300 p-5">
         <Link to={`/products/${product.id}`}>
-        <img className="w-56 h-48" src={product.image} alt={product.title} />
+        <img className=" w-52 h-44" src={product.image} alt={product.title} />
         <h4 className="text-lg text-sky-800 font-bold h-16 line-clamp-1">{shortenText(product.title)}</h4>
         </Link>
         <div className="flex justify-between items-center">
@@ -35,17 +34,23 @@ function ProductCard({product}) {
                 </svg>
             </span>
         </button>}
-        {cardQuantity>1 && <button onClick={() => clickHandler("DECREASE")} className="group bg-teal-700 hover:bg-teal-600 transition-all text-white  rounded-lg p-2 w-10 h-10">
-            -
+        {cardQuantity>1 && <button onClick={() => clickHandler("DECREASE")} className="group bg-red-500 hover:bg-red-700 transition-all text-white text-center items-center flex justify-center rounded-lg p-2 w-10 h-10">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" dataSlot="icon" className="w-4 h-4">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14" />
+</svg>
+
         </button>}
         {!!cardQuantity && <span className="leading-10">{cardQuantity}</span>}
             {cardQuantity==0 ? ( <button onClick={() => clickHandler("ADD_ITEM")} className="group bg-teal-700 hover:bg-teal-600 transition-all text-white rounded-lg flex items-center mx-auto p-2 gap-2">
-            <span className="fon-medium text-sm">Add to cart</span>
-            <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+            <span className="fon-medium text-md">Add to cart</span>
+            <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
             </svg></span>
-        </button>) :(<button onClick={() => clickHandler("INCREASE")} className="group bg-teal-700 hover:bg-teal-600 transition-all text-white  rounded-lg p-2 w-10 h-10">
-            +
+        </button>) :(<button onClick={() => clickHandler("INCREASE")} className="group bg-teal-700 hover:bg-teal-600 transition-all text-white text-center items-center flex justify-center rounded-lg p-2 w-10 h-10">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" dataSlot="icon" className="w-4 h-4">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+</svg>
+
         </button>) }
         </div>
     </div> );

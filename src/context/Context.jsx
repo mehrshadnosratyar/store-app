@@ -32,6 +32,11 @@ function useProducts(){
    const useProduct =  useContext(ContextData)
    return useProduct
 }
+function useProductcard(id){
+    const useProduct =  useContext(ContextData)
+    const resualt = useProduct.find((product) => product.id ==id)
+    return resualt
+}
 
 export default ContextProvider;
-export {useProducts}
+export {useProducts,useProductcard}
