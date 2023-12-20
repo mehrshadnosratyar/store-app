@@ -33,8 +33,7 @@ function ProductsPage() {
     },[query])
     return (
         <>
-        <section className="w-5/6 container mx-auto">
-        <Header />
+        <section>
         <Searchbar search={search} setSearch={setSearch} searchHandler={searchHandler}/>
             <div className="flex gap-5">
 
