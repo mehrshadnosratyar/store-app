@@ -13,7 +13,7 @@ function ProductCard({product}) {
     return ( 
         <div className="flex flex-col gap-1 rounded-xl bg-white w-60 border border-double border-sky-300 p-5">
         <Link to={`/products/${product.id}`}>
-        <img className=" w-52 h-44" src={product.image} alt={product.title} />
+        <img className=" w-56 h-52" src={product.image} alt={product.title} />
         <h4 className="text-lg text-sky-800 font-bold h-16 line-clamp-1">{shortenText(product.title)}</h4>
         </Link>
         <div className="flex justify-between items-center">
