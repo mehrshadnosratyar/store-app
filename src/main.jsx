@@ -5,7 +5,6 @@ import './index.css'
 import { BrowserRouter } from 'react-router-dom'
 import ContextProvider from './context/Context.jsx'
 import CartContext from './context/cartContext.jsx'
-import Layout from './layouts/Layout.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   
