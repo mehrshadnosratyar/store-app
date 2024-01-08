@@ -1,14 +1,11 @@
 import { Link } from "react-router-dom";
 import { quantityHandler, shortenText } from "../helper/helper";
-import { useCart } from "../context/cartContext";
-
 
 function ProductCard({product}) {
     const {rating} = product
-    const [state,dispatch] = useCart()
-    const cardQuantity = quantityHandler(state,product.id)
+    const cardQuantity = 0
     function clickHandler(type){
-        dispatch({ type, payload: product})
+        // dispatch({ type, payload: product})
     }
     return ( 
         <div className="flex flex-col gap-1 rounded-xl bg-white w-60 border border-double border-sky-300 p-5">

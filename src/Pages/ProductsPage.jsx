@@ -1,12 +1,12 @@
-import { useProducts } from "../context/Context";
 import ProductCard from "../components/ProductCard";
 import Loader from "../components/Loader";
 import Searchbar from "../components/Searchbar";
 import { useEffect, useState } from "react";
+import {useSelector,useDispatch} from "react-redux";
 import { categoryFilterProduct, createQueryHandler, serachProducts } from "../helper/helper";
 import { useSearchParams } from "react-router-dom";
-import Header from "../components/Header";
 import { categories } from "../helper/list";
+import { fetchProducts } from "../features/products/productsSlice";
 
 function ProductsPage() {
     function categoryHandler(event){
@@ -17,17 +17,21 @@ function ProductsPage() {
     function searchHandler(){
         setQuery(query => createQueryHandler(query,{search}))
     }
-    const productData = useProducts()
+    const {products , loading} = useSelector((store) => store.product)
+    const dispatch = useDispatch()
     const [search,setSearch] =useState()
     const [dsiplayed,setDisplayed] = useState([]);
     const [query,setQuery] = useState({})
     const [searchParams,setSearchParams]=useSearchParams()
     useEffect(() => {
-        setDisplayed(productData)
-    },[productData])
+        dispatch(fetchProducts())
+    },[])
+    useEffect(() => {
+        setDisplayed(products)
+    },[products])
     useEffect(()=>{
         setSearchParams(query)
-        let finalProducts = serachProducts(productData,query.search)
+        let finalProducts = serachProducts(products,query.search)
         finalProducts = categoryFilterProduct(finalProducts,query.category)
         setDisplayed(finalProducts)
     },[query])
@@ -38,7 +42,7 @@ function ProductsPage() {
             <div className="flex gap-5">
 
             <div className="flex flex-wrap gap-3 w-full">
-                {!dsiplayed.length && <Loader />}
+                {loading && <Loader />}
                 {dsiplayed.map(product => <ProductCard key={product.id} product={product} />)}
             </div>
             <div className="w-64 p-5 h-max bg-sky-200 rounded-xl">

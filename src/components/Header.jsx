@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
-import { useCart } from "../context/cartContext";
 
 function Header() {
-    const [state] = useCart()
     return ( <header className="w-full mt-6 mb-12">
         <div className="w-full bg-sky-500 rounded-lg px-12 h-16 flex items-center justify-between">
             <Link to={"/products"}><h1 className="text-4xl font-semibold">Digi Store</h1></Link>
@@ -13,7 +11,7 @@ function Header() {
 </svg>
 </button>
                 </Link>
-                {!!state.itemsCounter && <span className="absolute bg-teal-900 text-white left-7 -top-2 rounded-full py-1 px-2 text-xs">{state.itemsCounter}</span>}
+                {/* {!!state.itemsCounter && <span className="absolute bg-teal-900 text-white left-7 -top-2 rounded-full py-1 px-2 text-xs">{state.itemsCounter}</span>} */}
             </div>
         </div>
     </header> );

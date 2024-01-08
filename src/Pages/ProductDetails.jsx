@@ -1,11 +1,18 @@
 import { Link, useParams } from "react-router-dom";
-import { useProductcard } from "../context/Context";
+import {useSelector,useDispatch} from "react-redux";
+import { fetchProducts } from "../features/products/productsSlice";
+import { useEffect } from "react";
 function ProductDetails() {
-
-    const {id} = useParams()
-    const activeProduct = useProductcard(+id)
-    const {title,image,price,rating,description,category} = activeProduct
+   const {id} = useParams()
+   const dispatch = useDispatch()
+   useEffect(() => {
+    dispatch(fetchProducts())
+    },[])
+   const activeProduct = useSelector(store => store.product.products.find(item => item.id ==+id))
+   const {image,title,description,price,rating,category} = activeProduct
+   if(!activeProduct) return <Loader/>
     return ( 
+        <>
         <section className="flex flex-col lg:flex-row p-12 justify-center gap-20 ">
             <div className=" p-5 border-2 bg-white border-sky-500 rounded-2xl">
                 <img className=" rounded-xl" src={image} alt={title} />
@@ -53,6 +60,7 @@ function ProductDetails() {
                 </div>
             </div>
         </section>
+        </>
     );
 }
 

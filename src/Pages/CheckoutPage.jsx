@@ -1,14 +1,12 @@
 import { Navigate } from "react-router-dom";
-import { useCart } from "../context/cartContext";
 import { shortenText } from "../helper/helper";
 function CheckoutPage() {
-    const [state,dispatch] = useCart()
     if(!state.itemsCounter){
        return( <Navigate to={"/products"} />)
     }
     return( 
         <section className="flex gap-5">
-            <div className="w-2/5 max-h-80 bg-sky-100 rounded-xl p-6 flex flex-col gap-8 justify-between">
+            {/* <div className="w-2/5 max-h-80 bg-sky-100 rounded-xl p-6 flex flex-col gap-8 justify-between">
                 <h2 className="text-3xl text-sky-600 font-semibold">Your shopping cart</h2>
                 <div className="w-full p-3 bg-sky-200 font-semibold flex justify-between rounded-lg">
                     <span>Itmes</span>
@@ -32,7 +30,7 @@ function CheckoutPage() {
                         </div>
                     </div>
                 ))}
-            </div>
+            </div> */}
         </section>
     );}
 
